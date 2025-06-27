@@ -17,7 +17,7 @@ public class UpdateUserService implements UpdateUserUseCase {
     private final FindUserPort findUserPort;
 
     @Override
-    public String updateName(Long id, String name) {
+    public User updateName(Long id, String name) {
         // 기존 유저 정보 조회
         User user = findUserPort.byId(id).orElse(null);
         if(user == null) {
@@ -31,11 +31,11 @@ public class UpdateUserService implements UpdateUserUseCase {
         }
 
         user.updateName(name);
-        return "정상적으로 수정되었습니다.";
+        return user;
     }
 
     @Override
-    public String updateDifficulty(Long id, String difficulty) {
+    public User updateDifficulty(Long id, String difficulty) {
         // 기존 유저 정보 조회
         User user = findUserPort.byId(id).orElse(null);
         if(user == null) {
@@ -43,6 +43,6 @@ public class UpdateUserService implements UpdateUserUseCase {
         }
 
         user.updateDifficulty(difficulty);
-        return "정상적으로 수정되었습니다.";
+        return user;
     }
 }

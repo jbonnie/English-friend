@@ -1,7 +1,9 @@
 package english.chatbot.application.port.in;
 
+import english.chatbot.application.domain.entity.User;
+
 public interface UpdateUserUseCase {
 
-    String updateName(Long id, String name);
-    String updateDifficulty(Long id, String difficulty);
+    User updateName(Long id, String name);
+    User updateDifficulty(Long id, String difficulty);
 }
