@@ -11,7 +11,6 @@ import java.time.LocalDateTime;
 
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Builder
 @Getter
 @EntityListeners(AuditingEntityListener.class)
 public class User {
@@ -31,4 +30,9 @@ public class User {
     private LocalDateTime createdAt;
     @LastModifiedDate
     private LocalDateTime updatedAt;
+
+    public User(String name, int difficulty) {
+        this.name = name;
+        this.difficulty = difficulty;
+    }
 }
