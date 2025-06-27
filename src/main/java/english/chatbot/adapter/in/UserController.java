@@ -60,12 +60,12 @@ public class UserController {
     }
 
     // 이름 수정
-    @PatchMapping("/mypage/update/name")
+    @PatchMapping("/mypage/name")
     public ResponseEntity<?> updateName(@RequestBody UpdateUserRequestDto requestDto,
                              @CookieValue(name = "userId", required = false) Cookie cookie) {
 
         if(cookie == null) {
-            throw new RuntimeException("로그인 후 이용해주세요.");
+            throw new IllegalArgumentException("로그인 후 이용해주세요.");
         }
 
         if(requestDto.getName() == null) {
@@ -79,12 +79,12 @@ public class UserController {
     }
 
     // 선택 난이도 수정
-    @PatchMapping("/mypage/update/difficulty")
+    @PatchMapping("/mypage/difficulty")
     public ResponseEntity<?> updateDifficulty(@RequestBody UpdateUserRequestDto requestDto,
                                    @CookieValue(name = "userId", required = false) Cookie cookie) {
 
         if(cookie == null) {
-            throw new RuntimeException("로그인 후 이용해주세요.");
+            throw new IllegalArgumentException("로그인 후 이용해주세요.");
         }
 
         if(requestDto.getDifficulty() == null) {
