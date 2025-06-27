@@ -40,7 +40,7 @@ public class User {
         this.name = name;
     }
 
-    public void update(int difficulty) {
+    public void updateDifficulty(int difficulty) {
         this.difficulty = difficulty;
     }
 }

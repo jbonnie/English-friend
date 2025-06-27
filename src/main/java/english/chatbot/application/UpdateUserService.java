@@ -30,8 +30,19 @@ public class UpdateUserService implements UpdateUserUseCase {
             return "이미 존재하는 이름입니다. 다른 이름으로 시도해주세요.";
         }
 
-        // 이름 정상 수정
         user.updateName(name);
+        return "정상적으로 수정되었습니다.";
+    }
+
+    @Override
+    public String updateDifficulty(Long id, Integer difficulty) {
+        // 기존 유저 정보 조회
+        User user = findUserPort.byId(id).orElse(null);
+        if(user == null) {
+            return "등록되지 않은 유저입니다. 회원가입 후 이용해주세요.";
+        }
+
+        user.updateDifficulty(difficulty);
         return "정상적으로 수정되었습니다.";
     }
 }

@@ -6,5 +6,5 @@ import lombok.Data;
 public class UpdateUserRequestDto {
 
     private String name;
-    private int difficulty;
+    private Integer difficulty;
 }

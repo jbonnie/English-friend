@@ -56,10 +56,16 @@ public class MyPageController {
         return updateUserUseCase.updateName(id, requestDto.getName());
     }
 
-//    // 선택 난이도 수정
-//    @PatchMapping("/mypage/update/difficulty")
-//    public String updateDifficulty(@RequestBody updateUserRequestDto ) {
-//
-//    }
+    // 선택 난이도 수정
+    @PatchMapping("/mypage/update/difficulty")
+    public String updateDifficulty(@RequestBody UpdateUserRequestDto requestDto) {
+        if(requestDto.getDifficulty() == null) {
+            return "수정하고자 하는 난이도를 선택해주세요.";
+        }
+
+        // TODO: JWT 토큰으로 기존 유저 정보 가져오기
+        Long id = 1L;
+        return updateUserUseCase.updateDifficulty(id, requestDto.getDifficulty());
+    }
 
 }
