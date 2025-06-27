@@ -1,0 +1,34 @@
+package english.chatbot.application.entity;
+
+import jakarta.persistence.*;
+import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import java.time.LocalDateTime;
+
+@Entity
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Builder
+@Getter
+@EntityListeners(AuditingEntityListener.class)
+public class User {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @NonNull
+    private String name;
+    @ColumnDefault("0")
+    private int difficulty;
+    @ColumnDefault("0")
+    private int score;
+    private LocalDateTime lastStudy;
+
+    @CreatedDate
+    private LocalDateTime createdAt;
+    @LastModifiedDate
+    private LocalDateTime updatedAt;
+}
