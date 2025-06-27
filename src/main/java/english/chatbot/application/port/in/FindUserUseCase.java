@@ -1,6 +1,8 @@
 package english.chatbot.application.port.in;
 
+import english.chatbot.application.entity.User;
+
 public interface FindUserUseCase {
 
-    boolean execute(String name);
+    User execute(String name);
 }

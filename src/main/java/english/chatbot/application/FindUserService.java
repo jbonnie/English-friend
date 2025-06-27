@@ -15,8 +15,7 @@ public class FindUserService implements FindUserUseCase {
     private final FindUserPort findUserPort;
 
     @Override
-    public boolean execute(String name) {
-        Optional<User> user = findUserPort.byName(name);
-        return user.isPresent();
+    public User execute(String name) {
+        return findUserPort.byName(name).orElse(null);
     }
 }
