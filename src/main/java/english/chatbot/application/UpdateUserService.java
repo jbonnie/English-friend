@@ -35,7 +35,7 @@ public class UpdateUserService implements UpdateUserUseCase {
     }
 
     @Override
-    public String updateDifficulty(Long id, Integer difficulty) {
+    public String updateDifficulty(Long id, String difficulty) {
         // 기존 유저 정보 조회
         User user = findUserPort.byId(id).orElse(null);
         if(user == null) {

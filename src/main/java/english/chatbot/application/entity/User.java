@@ -20,8 +20,8 @@ public class User {
     private Long id;
     @NonNull
     private String name;
-    @ColumnDefault("0")
-    private int difficulty;
+    @ColumnDefault("EASY")
+    private String difficulty;      // EASY / NORMAL / HARD
     @ColumnDefault("0")
     private int score;
     private LocalDateTime lastStudy;
@@ -31,7 +31,7 @@ public class User {
     @LastModifiedDate
     private LocalDateTime updatedAt;
 
-    public User(String name, int difficulty) {
+    public User(String name, String difficulty) {
         this.name = name;
         this.difficulty = difficulty;
     }
@@ -40,7 +40,7 @@ public class User {
         this.name = name;
     }
 
-    public void updateDifficulty(int difficulty) {
+    public void updateDifficulty(String difficulty) {
         this.difficulty = difficulty;
     }
 }

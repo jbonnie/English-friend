@@ -13,7 +13,7 @@ public class RegisterUserService implements RegisterUserUseCase {
     private final RegisterUserPort registerUserPort;
 
     @Override
-    public User execute(String name, int difficulty) {
+    public User execute(String name, String difficulty) {
         return registerUserPort.save(new User(name, difficulty));
     }
 }

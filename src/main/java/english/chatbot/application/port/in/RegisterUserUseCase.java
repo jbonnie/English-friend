@@ -4,5 +4,5 @@ import english.chatbot.application.entity.User;
 
 public interface RegisterUserUseCase {
 
-    User execute(String name, int difficulty);
+    User execute(String name, String difficulty);
 }
