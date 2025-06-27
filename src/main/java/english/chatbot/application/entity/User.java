@@ -35,4 +35,12 @@ public class User {
         this.name = name;
         this.difficulty = difficulty;
     }
+
+    public void updateName(String name) {
+        this.name = name;
+    }
+
+    public void update(int difficulty) {
+        this.difficulty = difficulty;
+    }
 }

@@ -18,4 +18,9 @@ public class FindUserAdapter implements FindUserPort {
     public Optional<User> byName(String name) {
         return userRepository.findByName(name);
     }
+
+    @Override
+    public Optional<User> byId(Long id) {
+        return userRepository.findById(id);
+    }
 }

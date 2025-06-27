@@ -7,4 +7,5 @@ import java.util.Optional;
 public interface FindUserPort {
 
     Optional<User> byName(String name);
+    Optional<User> byId(Long id);
 }
