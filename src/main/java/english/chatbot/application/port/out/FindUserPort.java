@@ -1,0 +1,10 @@
+package english.chatbot.application.port.out;
+
+import english.chatbot.application.entity.User;
+
+import java.util.Optional;
+
+public interface FindUserPort {
+
+    Optional<User> byName(String name);
+}
