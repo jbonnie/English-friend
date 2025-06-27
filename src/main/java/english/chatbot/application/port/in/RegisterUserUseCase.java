@@ -1,9 +1,9 @@
 package english.chatbot.application.port.in;
 
 import english.chatbot.adapter.in.dto.SignUpRequestDto;
-import english.chatbot.adapter.in.dto.SignUpResponseDto;
+import english.chatbot.application.entity.User;
 
 public interface RegisterUserUseCase {
 
-    SignUpResponseDto execute(SignUpRequestDto requestDto);
+    User execute(SignUpRequestDto requestDto);
 }
