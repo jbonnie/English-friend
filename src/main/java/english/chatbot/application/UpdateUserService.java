@@ -21,13 +21,13 @@ public class UpdateUserService implements UpdateUserUseCase {
         // 기존 유저 정보 조회
         User user = findUserPort.byId(id).orElse(null);
         if(user == null) {
-            return "등록되지 않은 유저입니다. 회원가입 후 이용해주세요.";
+            throw new IllegalArgumentException("등록되지 않은 유저입니다. 회원가입 후 이용해주세요.");
         }
 
         // 이미 존재하는 이름인지 확인
         Optional<User> userWithNewName = findUserPort.byName(name);
         if(userWithNewName.isPresent()) {
-            return "이미 존재하는 이름입니다. 다른 이름으로 시도해주세요.";
+            throw new IllegalArgumentException("이미 존재하는 이름입니다. 다른 이름으로 시도해주세요.");
         }
 
         user.updateName(name);
@@ -39,7 +39,7 @@ public class UpdateUserService implements UpdateUserUseCase {
         // 기존 유저 정보 조회
         User user = findUserPort.byId(id).orElse(null);
         if(user == null) {
-            return "등록되지 않은 유저입니다. 회원가입 후 이용해주세요.";
+            throw new IllegalArgumentException("등록되지 않은 유저입니다. 회원가입 후 이용해주세요.");
         }
 
         user.updateDifficulty(difficulty);
