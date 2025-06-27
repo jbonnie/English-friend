@@ -13,4 +13,4 @@
 - 마이페이지에서 선택한 난이도 변경 가능
 
 ## 3. ERD
-<img width="300" alt="erd" src="https://github.com/user-attachments/assets/11347110-aa52-40ff-92ed-4c93aa0a7e05" />
+<img width="300" alt="erd" src="https://github.com/user-attachments/assets/baa653e0-1b1f-4613-b6e7-48720de4a7ed" />
