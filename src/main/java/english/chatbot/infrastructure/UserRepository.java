@@ -1,6 +1,6 @@
 package english.chatbot.infrastructure;
 
-import english.chatbot.application.entity.User;
+import english.chatbot.application.domain.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

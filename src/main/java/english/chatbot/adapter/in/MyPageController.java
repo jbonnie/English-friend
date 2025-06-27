@@ -2,7 +2,7 @@ package english.chatbot.adapter.in;
 
 import english.chatbot.adapter.in.dto.SignUpRequestDto;
 import english.chatbot.adapter.in.dto.UpdateUserRequestDto;
-import english.chatbot.application.entity.User;
+import english.chatbot.application.domain.entity.User;
 import english.chatbot.application.port.in.FindUserUseCase;
 import english.chatbot.application.port.in.RegisterUserUseCase;
 import english.chatbot.application.port.in.UpdateUserUseCase;

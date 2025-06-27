@@ -1,6 +1,6 @@
 package english.chatbot.adapter.out;
 
-import english.chatbot.application.entity.User;
+import english.chatbot.application.domain.entity.User;
 import english.chatbot.application.port.out.RegisterUserPort;
 import english.chatbot.infrastructure.UserRepository;
 import lombok.RequiredArgsConstructor;

@@ -1,6 +1,6 @@
 package english.chatbot.application.port.out;
 
-import english.chatbot.application.entity.User;
+import english.chatbot.application.domain.entity.User;
 
 import java.util.Optional;
 
