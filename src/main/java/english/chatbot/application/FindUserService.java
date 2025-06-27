@@ -6,8 +6,6 @@ import english.chatbot.application.port.out.FindUserPort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @Service
 @RequiredArgsConstructor
 public class FindUserService implements FindUserUseCase {
