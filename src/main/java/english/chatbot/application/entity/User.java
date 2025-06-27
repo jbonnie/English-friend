@@ -1,6 +1,9 @@
 package english.chatbot.application.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 import org.springframework.data.annotation.CreatedDate;
@@ -18,12 +21,18 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NonNull
+
+    @NotBlank
+    @Size(min = 1, max = 20)
+    @Column(nullable = false)
     private String name;
+
     @ColumnDefault("EASY")
     private String difficulty;      // EASY / NORMAL / HARD
+
     @ColumnDefault("0")
     private int score;
+
     private LocalDateTime lastStudy;
 
     @CreatedDate
