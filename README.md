@@ -11,3 +11,6 @@
 - 공부를 많이 할수록 점수가 쌓임! (문장수)
 - 마이페이지에서 점수 확인 가능
 - 마이페이지에서 선택한 난이도 변경 가능
+
+## 3. ERD
+<img width="300" alt="erd" src="https://github.com/user-attachments/assets/a1fe04ea-1c53-4a19-b7b0-8abb10d5fb08" />
