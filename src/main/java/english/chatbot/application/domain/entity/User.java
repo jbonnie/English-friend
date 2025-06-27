@@ -1,8 +1,8 @@
-package english.chatbot.application.entity;
+package english.chatbot.application.domain.entity;
 
+import english.chatbot.application.domain.Difficulty;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
@@ -12,6 +12,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 
+@Table(name = "member")
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
@@ -27,8 +28,8 @@ public class User {
     @Column(nullable = false)
     private String name;
 
-    @ColumnDefault("EASY")
-    private String difficulty;      // EASY / NORMAL / HARD
+    @Enumerated(EnumType.STRING)
+    private Difficulty difficulty;
 
     @ColumnDefault("0")
     private int score;
@@ -42,7 +43,7 @@ public class User {
 
     public User(String name, String difficulty) {
         this.name = name;
-        this.difficulty = difficulty;
+        this.difficulty = Difficulty.from(difficulty);
     }
 
     public void updateName(String name) {
@@ -50,6 +51,6 @@ public class User {
     }
 
     public void updateDifficulty(String difficulty) {
-        this.difficulty = difficulty;
+        this.difficulty = Difficulty.from(difficulty);
     }
 }
