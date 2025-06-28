@@ -53,4 +53,9 @@ public class User {
     public void updateDifficulty(String difficulty) {
         this.difficulty = Difficulty.from(difficulty);
     }
+
+    public void updateStudy() {
+        this.score++;
+        this.lastStudy = LocalDateTime.now();
+    }
 }
