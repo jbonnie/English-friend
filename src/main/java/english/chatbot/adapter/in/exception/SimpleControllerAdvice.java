@@ -6,8 +6,15 @@ import org.springframework.web.bind.MissingRequestCookieException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import java.util.NoSuchElementException;
+
 @ControllerAdvice
 public class SimpleControllerAdvice {
+
+    @ExceptionHandler(NoSuchElementException.class)
+    public ResponseEntity<?> noSuchElementHandle(Exception e) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+    }
 
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<?> illegalArgumentHandle(Exception e) {
