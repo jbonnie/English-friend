@@ -62,6 +62,18 @@ public class UserController {
         return ResponseEntity.ok("환영합니다, " + name + "님!");
     }
 
+    // 로그아웃 시도
+    @GetMapping("/logout")
+    public ResponseEntity<?> logout(@CookieValue(name = "userId", required = true) Cookie cookie,
+                                    HttpServletResponse response) {
+        // 쿠키 만료 시키기
+        Cookie logoutCookie = new Cookie("userId", null);
+        cookie.setPath("/");
+        cookie.setMaxAge(0);
+        response.addCookie(cookie);
+        return ResponseEntity.ok("로그아웃되었습니다. 다음에 또 만나요!");
+    }
+
     // 유저 정보 조회
     @GetMapping("/mypage")
     public ResponseEntity<?> getUser(@CookieValue(name = "userId", required = true) Cookie cookie) {
