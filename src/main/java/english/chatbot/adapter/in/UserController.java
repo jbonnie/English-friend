@@ -24,7 +24,7 @@ public class UserController {
     // 첫 회원 등록
     @PostMapping("/signup")
     public ResponseEntity<?> signup(@Valid @RequestBody SignUpRequestDto requestDto,
-                                 HttpServletResponse response) {
+                                    HttpServletResponse response) {
         // 이미 존재하는 유저 네임인지 확인
         User user = findUserUseCase.execute(requestDto.getName());
         if(user != null) {
@@ -45,7 +45,7 @@ public class UserController {
     // 로그인 시도
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestParam("name") String name,
-                        HttpServletResponse response) {
+                                    HttpServletResponse response) {
         User user = findUserUseCase.execute(name);
         if(user == null) {
             throw new IllegalArgumentException("등록되지 않은 유저입니다. 회원가입 후 이용해주세요.");
@@ -62,11 +62,7 @@ public class UserController {
     // 이름 수정
     @PatchMapping("/mypage/name")
     public ResponseEntity<?> updateName(@RequestBody UpdateUserRequestDto requestDto,
-                             @CookieValue(name = "userId", required = false) Cookie cookie) {
-
-        if(cookie == null) {
-            throw new IllegalArgumentException("로그인 후 이용해주세요.");
-        }
+                                        @CookieValue(name = "userId", required = true) Cookie cookie) {
 
         if(requestDto.getName() == null) {
             throw new IllegalArgumentException("수정하고자 하는 이름을 입력해주세요.");
@@ -81,11 +77,7 @@ public class UserController {
     // 선택 난이도 수정
     @PatchMapping("/mypage/difficulty")
     public ResponseEntity<?> updateDifficulty(@RequestBody UpdateUserRequestDto requestDto,
-                                   @CookieValue(name = "userId", required = false) Cookie cookie) {
-
-        if(cookie == null) {
-            throw new IllegalArgumentException("로그인 후 이용해주세요.");
-        }
+                                              @CookieValue(name = "userId", required = true) Cookie cookie) {
 
         if(requestDto.getDifficulty() == null) {
             throw new IllegalArgumentException("수정하고자 하는 난이도를 선택해주세요.");
