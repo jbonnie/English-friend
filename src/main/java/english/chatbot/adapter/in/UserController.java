@@ -2,6 +2,7 @@ package english.chatbot.adapter.in;
 
 import english.chatbot.adapter.in.dto.SignUpRequestDto;
 import english.chatbot.adapter.in.dto.UpdateUserRequestDto;
+import english.chatbot.adapter.in.dto.UserResponseDto;
 import english.chatbot.application.domain.entity.User;
 import english.chatbot.application.port.in.FindUserUseCase;
 import english.chatbot.application.port.in.RegisterUserUseCase;
@@ -12,6 +13,8 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.NoSuchElementException;
 
 @RestController
 @RequiredArgsConstructor
@@ -26,7 +29,7 @@ public class UserController {
     public ResponseEntity<?> signup(@Valid @RequestBody SignUpRequestDto requestDto,
                                     HttpServletResponse response) {
         // 이미 존재하는 유저 네임인지 확인
-        User user = findUserUseCase.execute(requestDto.getName());
+        User user = findUserUseCase.byName(requestDto.getName());
         if(user != null) {
             throw new IllegalArgumentException("이미 존재하는 이름입니다. 다른 이름으로 시도해주세요.");
         }
@@ -46,9 +49,9 @@ public class UserController {
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestParam("name") String name,
                                     HttpServletResponse response) {
-        User user = findUserUseCase.execute(name);
+        User user = findUserUseCase.byName(name);
         if(user == null) {
-            throw new IllegalArgumentException("등록되지 않은 유저입니다. 회원가입 후 이용해주세요.");
+            throw new NoSuchElementException("등록되지 않은 유저입니다. 회원가입 후 이용해주세요.");
         }
 
         // 쿠키에 userId 저장
@@ -57,6 +60,13 @@ public class UserController {
         cookie.setMaxAge(60*60*5);        // 5시간 유지
         response.addCookie(cookie);
         return ResponseEntity.ok("환영합니다, " + name + "님!");
+    }
+
+    // 유저 정보 조회
+    @GetMapping("/mypage")
+    public ResponseEntity<?> getUser(@CookieValue(name = "userId", required = true) Cookie cookie) {
+        User user = findUserUseCase.byId(Long.parseLong(cookie.getValue()));
+        return ResponseEntity.ok(UserResponseDto.from(user));
     }
 
     // 이름 수정
