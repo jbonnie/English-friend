@@ -2,7 +2,7 @@ package english.chatbot.adapter.out;
 
 import english.chatbot.application.domain.entity.User;
 import english.chatbot.application.port.out.FindUserPort;
-import english.chatbot.infrastructure.UserRepository;
+import english.chatbot.infrastructure.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
