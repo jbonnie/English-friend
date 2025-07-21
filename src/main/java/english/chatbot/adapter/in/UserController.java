@@ -2,6 +2,7 @@ package english.chatbot.adapter.in;
 
 import english.chatbot.adapter.in.dto.SignUpRequestDto;
 import english.chatbot.adapter.in.dto.UpdateUserRequestDto;
+import english.chatbot.adapter.in.dto.UserResponseDto;
 import english.chatbot.application.domain.entity.User;
 import english.chatbot.application.port.in.FindUserUseCase;
 import english.chatbot.application.port.in.RegisterUserUseCase;
@@ -12,6 +13,8 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.NoSuchElementException;
 
 @RestController
 @RequiredArgsConstructor
@@ -48,7 +51,7 @@ public class UserController {
                                     HttpServletResponse response) {
         User user = findUserUseCase.byName(name);
         if(user == null) {
-            throw new IllegalArgumentException("등록되지 않은 유저입니다. 회원가입 후 이용해주세요.");
+            throw new NoSuchElementException("등록되지 않은 유저입니다. 회원가입 후 이용해주세요.");
         }
 
         // 쿠키에 userId 저장
@@ -57,6 +60,25 @@ public class UserController {
         cookie.setMaxAge(60*60*5);        // 5시간 유지
         response.addCookie(cookie);
         return ResponseEntity.ok("환영합니다, " + name + "님!");
+    }
+
+    // 로그아웃 시도
+    @GetMapping("/logout")
+    public ResponseEntity<?> logout(@CookieValue(name = "userId", required = true) Cookie cookie,
+                                    HttpServletResponse response) {
+        // 쿠키 만료 시키기
+        Cookie logoutCookie = new Cookie("userId", null);
+        cookie.setPath("/");
+        cookie.setMaxAge(0);
+        response.addCookie(cookie);
+        return ResponseEntity.ok("로그아웃되었습니다. 다음에 또 만나요!");
+    }
+
+    // 유저 정보 조회
+    @GetMapping("/mypage")
+    public ResponseEntity<?> getUser(@CookieValue(name = "userId", required = true) Cookie cookie) {
+        User user = findUserUseCase.byId(Long.parseLong(cookie.getValue()));
+        return ResponseEntity.ok(UserResponseDto.from(user));
     }
 
     // 이름 수정
