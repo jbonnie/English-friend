@@ -31,6 +31,8 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	implementation 'org.springframework.ai:spring-ai-starter-model-openai'
+	implementation 'org.springframework.ai:spring-ai-starter-model-chat-memory-repository-jdbc'
+	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
 	compileOnly 'org.projectlombok:lombok'
 	runtimeOnly 'com.h2database:h2'
 	annotationProcessor 'org.projectlombok:lombok'
@@ -40,7 +42,7 @@ dependencies {
 
 dependencyManagement {
 	imports {
-		mavenBom "org.springframework.ai:spring-ai-bom:1.0.0-SNAPSHOT"
+		mavenBom "org.springframework.ai:spring-ai-bom:1.1.0-SNAPSHOT"
 	}
 }
 
