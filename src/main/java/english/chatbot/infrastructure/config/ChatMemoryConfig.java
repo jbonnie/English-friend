@@ -13,6 +13,7 @@ public class ChatMemoryConfig {
     public ChatMemory chatMemory(RedisChatMemoryRepository chatMemoryRepository) {
         return MessageWindowChatMemory.builder()
                 .chatMemoryRepository(chatMemoryRepository)
+                .maxMessages(10)
                 .build();
     }
 }

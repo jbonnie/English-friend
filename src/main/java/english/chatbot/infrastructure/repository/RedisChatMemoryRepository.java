@@ -6,6 +6,7 @@ import org.springframework.ai.chat.messages.Message;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -21,7 +22,8 @@ public class RedisChatMemoryRepository implements ChatMemoryRepository {
 
     @Override
     public List<Message> findByConversationId(String conversationId) {
-        return redisTemplate.opsForValue().get(conversationId);
+        List<Message> messages = redisTemplate.opsForValue().get(conversationId);
+        return (messages == null) ? new ArrayList<>() : messages;
     }
 
     @Override
