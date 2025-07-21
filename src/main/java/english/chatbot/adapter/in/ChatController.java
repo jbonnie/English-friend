@@ -29,6 +29,9 @@ public class ChatController {
         User user = findUserUseCase.byId(id);
         // 프롬프트 생성
         Prompt prompt = generatePromptUsecase.execute(user, message);
-        return chatUseCase.chat(prompt);
+        String response = chatUseCase.chat(prompt);
+        // 유저 score 업데이트
+        user.updateStudy();
+        return response;
     }
 }
