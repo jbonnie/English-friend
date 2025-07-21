@@ -13,7 +13,13 @@ public class FindUserService implements FindUserUseCase {
     private final FindUserPort findUserPort;
 
     @Override
-    public User execute(String name) {
+    public User byId(Long id) {
+        return findUserPort.byId(id)
+                .orElseThrow(() -> new IllegalArgumentException("등록되지 않은 유저입니다. 회원가입 후 이용해주세요."));
+    }
+
+    @Override
+    public User byName(String name) {
         return findUserPort.byName(name).orElse(null);
     }
 }

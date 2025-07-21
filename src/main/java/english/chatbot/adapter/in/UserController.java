@@ -26,7 +26,7 @@ public class UserController {
     public ResponseEntity<?> signup(@Valid @RequestBody SignUpRequestDto requestDto,
                                     HttpServletResponse response) {
         // 이미 존재하는 유저 네임인지 확인
-        User user = findUserUseCase.execute(requestDto.getName());
+        User user = findUserUseCase.byName(requestDto.getName());
         if(user != null) {
             throw new IllegalArgumentException("이미 존재하는 이름입니다. 다른 이름으로 시도해주세요.");
         }
@@ -46,7 +46,7 @@ public class UserController {
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestParam("name") String name,
                                     HttpServletResponse response) {
-        User user = findUserUseCase.execute(name);
+        User user = findUserUseCase.byName(name);
         if(user == null) {
             throw new IllegalArgumentException("등록되지 않은 유저입니다. 회원가입 후 이용해주세요.");
         }
