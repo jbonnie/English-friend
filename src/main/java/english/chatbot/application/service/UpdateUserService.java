@@ -42,4 +42,9 @@ public class UpdateUserService implements UpdateUserUseCase {
         user.updateDifficulty(difficulty);
         return user;
     }
+
+    @Override
+    public void updateStudy(User user) {
+        user.updateStudy();
+    }
 }
