@@ -1,4 +1,4 @@
-package english.chatbot.application;
+package english.chatbot.application.service;
 
 import english.chatbot.application.domain.entity.User;
 import english.chatbot.application.port.in.UpdateUserUseCase;

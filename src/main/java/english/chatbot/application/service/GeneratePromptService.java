@@ -1,4 +1,4 @@
-package english.chatbot.application;
+package english.chatbot.application.service;
 
 import english.chatbot.application.domain.Difficulty;
 import english.chatbot.application.domain.entity.User;
@@ -44,6 +44,9 @@ public class GeneratePromptService implements GeneratePromptUsecase {
             messages.add(new SystemMessage(sysMessage));
         }
         messages.add(new UserMessage(message));
+
+        // chat memory 저장
+        chatMemory.add(conversationId, messages);
 
         return new Prompt(messages);
     }
