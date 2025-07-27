@@ -4,5 +4,5 @@ import org.springframework.ai.chat.prompt.Prompt;
 
 public interface ChatUseCase {
 
-    String chat(Prompt prompt);
+    String execute(Prompt prompt);
 }

@@ -16,7 +16,7 @@ public class ChatService implements ChatUseCase {
     private final ChatModel chatModel;
 
     @Override
-    public String chat(Prompt prompt) {
+    public String execute(Prompt prompt) {
         ChatResponse response = chatModel.call(prompt);
         return response.getResult().getOutput().getText();
     }
