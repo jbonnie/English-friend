@@ -6,4 +6,5 @@ public interface UpdateUserUseCase {
 
     User updateName(Long id, String name);
     User updateDifficulty(Long id, String difficulty);
+    void updateStudy(User user);
 }

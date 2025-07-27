@@ -31,8 +31,7 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Difficulty difficulty;
 
-    @ColumnDefault("0")
-    private int score;
+    private int score = 0;
 
     private LocalDateTime lastStudy;
 

@@ -4,6 +4,6 @@ import english.chatbot.application.domain.entity.User;
 
 public interface FindUserUseCase {
 
-    User byName(String name);
     User byId(Long id);
+    User byName(String name);
 }

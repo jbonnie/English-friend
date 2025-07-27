@@ -1,4 +1,4 @@
-package english.chatbot.application;
+package english.chatbot.application.service;
 
 import english.chatbot.application.domain.entity.User;
 import english.chatbot.application.port.in.UpdateUserUseCase;
@@ -41,5 +41,10 @@ public class UpdateUserService implements UpdateUserUseCase {
 
         user.updateDifficulty(difficulty);
         return user;
+    }
+
+    @Override
+    public void updateStudy(User user) {
+        user.updateStudy();
     }
 }
